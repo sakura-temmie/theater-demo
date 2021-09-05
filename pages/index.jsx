@@ -1,15 +1,11 @@
 import Layout from "../components/layoutParts/Layout"
-import LayoutDirectorTopSideBar from "../components/layoutParts/LayoutDirectorTopSideBar"
-import LayoutDirectorTopCardArea from "../components/layoutParts/LayoutDirectorTopCardArea"
+import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop"
 
 export default function Home() {
   return (
     <>
       <Layout title="Top">
-        <div className="flex w-full">
-        <LayoutDirectorTopSideBar />
-        <LayoutDirectorTopCardArea />
-        </div>
+        <LayoutDirectorTop />
         {/* <p className="text-4xl">ここにコンテンツを配置していく</p> */}
       </Layout>
     </>

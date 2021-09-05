@@ -2,8 +2,9 @@ import LayoutSideBarSearchBox from "./LayoutSideBarSearchBox"
 import LayoutSideBarSelectBox from './layoutSideBarSelectBox';
 
 //演出家topページのサイドバーを実装
-//横幅は320pxで固定
-export default function LayoutDirectorTopSideBar() {
+//横幅はw-64で固定
+export default function LayoutDirectorTopSideBar({areaApi}) {
+
   return (
     <aside className="w-64">
       <div className="border-gray-400 border border-solid p-2">
@@ -23,18 +24,7 @@ export default function LayoutDirectorTopSideBar() {
             title      = "エリア"
             subTitle   = "エリア絞り込み"
             name       = "area"
-            optionData={
-              [
-                {
-                  areaName: "aaa",
-                  id:1
-                },
-                {
-                  areaName: "bbb",
-                  id:2
-                }
-              ]
-            }
+            optionData = {areaApi}
           />
         </div>
         <div className="mb-2">
