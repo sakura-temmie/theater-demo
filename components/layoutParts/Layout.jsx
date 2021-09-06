@@ -14,13 +14,15 @@ export default function Layout({ children, title = "HP by Nextjs" }) {
       <header>
         <nav className="bg-gray-100 w-screen">
           <div className="flex items-center pl-8 h-24">
-            <div className="flex space-x-4">
+            <div className="container flex justify-between mx-auto">
               <Link href="/">
                 <a className="text-gray-500 bg-white hover:bg-white px-4 py-3 rounded">Logo</a>
               </Link>
-              <LayoutButton path="/" title="演出家を探す" />
-              <LayoutButton path="/" title="メッセージ" />
-              <LayoutButton path="/" title="プロフィール" />
+              <diV className="px-4 py-3 space-x-4">
+                <LayoutButton path="/" title="演出家を探す" />
+                <LayoutButton path="/" title="メッセージ" />
+                <LayoutButton path="/" title="プロフィール" />
+              </diV>
             </div>
           </div>
         </nav>
