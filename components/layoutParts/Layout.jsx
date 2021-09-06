@@ -18,11 +18,11 @@ export default function Layout({ children, title = "HP by Nextjs" }) {
               <Link href="/">
                 <a className="text-gray-500 bg-white hover:bg-white px-4 py-3 rounded">Logo</a>
               </Link>
-              <diV className="px-4 py-3 space-x-4">
+              <div className="px-4 py-3 space-x-4">
                 <LayoutButton path="/" title="演出家を探す" />
                 <LayoutButton path="/" title="メッセージ" />
                 <LayoutButton path="/" title="プロフィール" />
-              </diV>
+              </div>
             </div>
           </div>
         </nav>
