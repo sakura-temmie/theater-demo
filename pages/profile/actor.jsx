@@ -6,7 +6,7 @@ import ProfileActorResults from "../../components/profileParts/ProfileActorResul
 const actor = () => {
   return (
     <>
-      <Layout>
+      <Layout title={"演出家詳細"}>
         <div style={{ width: "960px" }}>
         <ProfileTopParts />
         <ProfileMiddleParts />

@@ -4,7 +4,7 @@ import LayoutButton from "./LayoutButton";
 
 //childrenはインポート先でラップしてる全てのコンテンツが入ってくる
 //titleはLayoutが呼び出された時にページから特定のタイトルを受け取る
-export default function Layout({ children, title = "HP by Nextjs" }) {
+export default function Layout({ children, title }) {
   return (
     <div className="flex justify-center item-center flex-col min-h-screen text-gray-600 text-sm font-mono">
       <Head>
