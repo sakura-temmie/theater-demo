@@ -1,12 +1,10 @@
 import EditImage from "./EditImage";
 import EditText from "./EditText";
 import EditDetail from "./EditDetail";
-import EditButton from "./EditButton";
 
 const EditTopParts = () => {
   return (
     <>
-      <EditButton title={"保存する"} />
       <div className="flex space-x-4 justify-center">
         <EditText name={"かくまあり"} text={"自己紹介"} />
         <EditImage />
