@@ -1,14 +1,11 @@
 import ProfileImage from "./ProfileImage";
-import ProfileText from "./ProfileText";
 import ProfileDetail from "./ProfileDetail";
-import ProfileButton from "./ProfileButton";
 import ProfileHeading from "./ProfileHeading";
 
 const ProfileTheatreTop = () => {
   return (
     <>
       <div style={{ width: "960px" }}>
-        <ProfileButton title={"編集する"} />
         <div className="flex space-x-4 justify-center">
           <div className="w-1/2 h-52">
             <ProfileHeading title={"東京芸術劇場"} />
@@ -19,6 +16,7 @@ const ProfileTheatreTop = () => {
           <ProfileImage />
         </div>
         <div className="flex space-x-4 justify-center">
+          <ProfileDetail text="所在地" />
           <ProfileDetail text="空きスケジュール　直近1ヶ月（要相談）" />
         </div>
       </div>
