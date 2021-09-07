@@ -16,29 +16,25 @@ export default function LayoutSideBarSearchBox({
   subTitle2,
   unit = "",
 }) {
-  //unitに値が返されたらspanタグを挿入する
-  const span = unit !== "" ? <span> {unit} </span> : null
-
-  //inputTypeがdateの場合のみinputのwidthを100%にする
-  const inputClass = inputType === "date" ? "w-full" : "w-10/12 text-right"
-
+  {/* タイトルによってinputタグの幅を変更するための変数 */}
+  const inputClassName = title === "使用料" ? "w-9/12 text-right" : "w-10/12 text-right"
   return (
     <>
       {/*  大枠のタイトルを受け取る  */}
-      <p> {title} </p>
+      <p className="text-base"> {title} </p>
       <div className="container border-gray-400 border border-solid">
         {/*  上段  */}
         <div className="w-11/12 border-b border-blue-400 m-auto my-1">
           <p className="mb-2px">{subTitle1}</p>
-          <input className={inputClass} type={inputType} name={name1} />
-          { span }
+          <input className={inputClassName} type={inputType} name={name1} />
+          <span> {unit} </span>
         </div>
         <p className="text-center">〜</p>
         {/*  下段  */}
         <div className="w-11/12 border-b border-blue-400 m-auto mb-2">
           <p className="mb-2px">{ subTitle2 }</p>
-          <input className={inputClass}  type={inputType} name={name2}/>
-          { span }
+          <input className={inputClassName} type={inputType} name={name2}/>
+          <span> {unit} </span>
         </div>
       </div>
     </>
