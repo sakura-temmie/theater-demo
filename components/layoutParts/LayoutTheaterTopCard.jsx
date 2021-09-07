@@ -8,23 +8,21 @@ import Link from 'next/link'
 
 export default function LayoutDirectorTopCard({
   imgUrl,
-  theaterName,
-  maxCapacity,
-  usageAmount,
-  area,
+  name,
+  totalNumberPerformances,
+  currentPerformance,
   path
 }) {
   return (
-  <Link href={path}>
-    <div className="shadow-2xl rounded-md w-full">
+    <Link href={path}>
+      <div className="shadow-lg w-full">
         <img className="shadow-lg w-72 h-48 object-cover mb-2" src={imgUrl} alt="" />
         <div className="px-2 pb-2">
-          <p className="text-lg"> {theaterName} </p>
-          <p> 最大収容人数 : {maxCapacity} 人</p>
-          <p> 希望利用額（１週間）: {usageAmount} 万円</p>
-          <p> エリア : {area} </p>
+          <p className="text-xl"> { name } </p>
+          <p> 通算公演数 : {totalNumberPerformances} 公演</p>
+          <p> 最近の公演 : {currentPerformance} </p>
         </div>
       </div>
-  </Link>
+    </Link>
   )
 }

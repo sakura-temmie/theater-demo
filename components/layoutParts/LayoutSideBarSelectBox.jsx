@@ -10,16 +10,32 @@ export default function LayoutSideBarSelectBox({
   name,
   optionData,
 }) {
+  {/*  titleの値によってSelectBoxを出し分ける   */ }
+  const months = ["",1,2,3,4,5,6,7,8,9,10,11,12]
+  let select
+  if (title === "カレンダー") {
+    select =
+      <div>
+        <span>直近 </span>
+        <select className="border border-blue-400" name={name}>
+          {months.map(month => <option key={month} value={month}> {month} </option>)}
+        </select>
+        <span> 月以降の空き</span>
+      </div>
+  } else {
+    select =
+      <select className="w-full border border-blue-400" name={name}>
+        {optionData.map((data) => <option key={data.id} value={data.areaName}> {data.areaName} </option>)}
+      </select>
+  }
   return (
     <>
       {/*  大枠のタイトルを受け取る  */}
-      <p> {title} </p>
+      <p className="text-base"> {title} </p>
       <div className="container border-gray-400 border border-solid">
         <div className="w-11/12 m-auto mt-2 mb-4">
-          <p className="mb-2px">{subTitle}</p>
-          <select className="w-full appearance-none border border-blue-400" name={name}>
-            {optionData.map((data) => <option key={data.id} value={data.areaName}> {data.areaName} </option>)}
-          </select>
+          <p className="mb-2">{subTitle}</p>
+          { select }
         </div>
       </div>
     </>
