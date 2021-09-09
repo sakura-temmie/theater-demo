@@ -18,7 +18,9 @@ export default function LayoutTheaterTopSideBar() {
               optionData = {[]}
             />
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded w-full h-8 mt-3">検索</button>
+          <div className="w-1/2 mx-auto">
+            <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold rounded w-full h-8 mt-3">検索</button>
+          </div>
         </div>
       </form>
     </aside>
