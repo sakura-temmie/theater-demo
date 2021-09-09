@@ -11,7 +11,7 @@ export default function Home() {
 
         {/* トップページはログインユーザーのフラグによって出し分ける */}
         <LayoutTheaterTop />
-        {/* <LayoutDirectorTop /> */}
+        <LayoutDirectorTop />
 
       </Layout>
     </>
