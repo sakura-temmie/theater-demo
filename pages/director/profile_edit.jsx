@@ -4,7 +4,7 @@ import EditTopParts from "../../components/editParts/EditTopParts";
 import ProfileMiddleParts from "../../components/profileParts/ProfileMiddleParts";
 import ProfileActorResults from "../../components/profileParts/ProfileActorResults";
 
-const actorEdit = () => {
+const profile_edit = () => {
   return (
     <Layout title={"演出家プロフィール編集"}>
       <div style={{ width: "960px" }}>
@@ -17,4 +17,4 @@ const actorEdit = () => {
   );
 };
 
-export default actorEdit;
+export default profile_edit;
