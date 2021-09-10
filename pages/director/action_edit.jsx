@@ -4,7 +4,7 @@ import ProfileTopParts from "../../components/profileParts/ProfileTopParts";
 import ProfileHeading from "../../components/profileParts/ProfileHeading";
 import EditButton from "../../components/editParts/EditButton";
 
-const performanceEdit = () => {
+const action_edit = () => {
   const areas = [
     { name: "選択してください", value: "選択してください" },
     { name: "1", value: 1 },
@@ -101,4 +101,4 @@ const performanceEdit = () => {
   );
 };
 
-export default performanceEdit;
+export default action_edit;

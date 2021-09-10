@@ -1,20 +1,20 @@
 import Layout from "../../components/layoutParts/Layout";
 import ProfileButton from "../../components/profileParts/ProfileButton";
-import ProfileTheatreTop from "../../components/profileParts/ProfileTheatreTop";
-import ProfileTheatreDetail from "../../components/profileParts/ProfileTheatreDetail";
+import ProfileTheaterTop from "../../components/profileParts/ProfileTheaterTop";
+import ProfileTheaterDetail from "../../components/profileParts/ProfileTheaterDetail";
 
-const theatre = () => {
+const profile = () => {
   return (
     <>
       <Layout title={"劇場詳細"}>
         <div style={{ width: "960px" }}>
           <ProfileButton title={"編集する"} />
-          <ProfileTheatreTop />
-          <ProfileTheatreDetail />
+          <ProfileTheaterTop />
+          <ProfileTheaterDetail />
         </div>
       </Layout>
     </>
   );
 };
 
-export default theatre;
+export default profile;

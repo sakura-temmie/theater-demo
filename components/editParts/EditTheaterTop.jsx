@@ -2,7 +2,7 @@ import EditImage from "./EditImage";
 import EditDetail from "./EditDetail";
 import EditHeading from "./EditHeading";
 
-const ProfileTheatreTop = () => {
+const ProfileTheaterTop = () => {
   return (
     <>
       <div style={{ width: "960px" }}>
@@ -24,4 +24,4 @@ const ProfileTheatreTop = () => {
   );
 };
 
-export default ProfileTheatreTop;
+export default ProfileTheaterTop;

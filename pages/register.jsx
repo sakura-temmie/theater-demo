@@ -6,7 +6,7 @@ import Layout from "../components/layoutParts/Layout"
 //クッキーのインスタンスを作る
 const cookie = new Cookie();
 
-export default function Auth() {
+export default function Register() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

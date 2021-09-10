@@ -4,7 +4,7 @@ import ProfileTopParts from "../../components/profileParts/ProfileTopParts";
 import ProfileMiddleParts from "../../components/profileParts/ProfileMiddleParts";
 import ProfileActorResults from "../../components/profileParts/ProfileActorResults";
 
-const actor = () => {
+const profile = () => {
   return (
     <>
       <Layout title={"演出家詳細"}>
@@ -19,4 +19,4 @@ const actor = () => {
   );
 }
 
-export default actor
+export default profile;

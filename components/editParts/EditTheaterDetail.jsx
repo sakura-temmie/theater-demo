@@ -2,7 +2,7 @@ import EditTitle from "./EditTitle";
 import EditSentence from "./EditSentence";
 import EditButton from "./EditButton";
 
-const ProfileTheatreDetail = () => {
+const ProfileTheaterDetail = () => {
   return (
     <>
       <div className="h-80 p-5">
@@ -16,4 +16,4 @@ const ProfileTheatreDetail = () => {
   );
 };
 
-export default ProfileTheatreDetail;
+export default ProfileTheaterDetail;
