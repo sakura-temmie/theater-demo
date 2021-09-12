@@ -1,6 +1,6 @@
 import Layout from "../components/layoutParts/Layout"
-import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop"
-import LayoutTheaterTop from "../components/layoutParts/LayoutTheaterTop"
+// import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop"
+// import LayoutTheaterTop from "../components/layoutParts/LayoutTheaterTop"
 
 export default function Home() {
   return (
