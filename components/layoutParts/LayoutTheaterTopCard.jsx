@@ -12,7 +12,7 @@ export default function LayoutDirectorTopCard({
   name,
   totalNumberPerformances,
   currentPerformance,
-  path
+  path,
 }) {
   return (
     <Link href={path}>
