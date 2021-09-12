@@ -10,8 +10,8 @@ export default function Home() {
         {/* ここにコンテンツを配置していく */}
 
         {/* トップページはログインユーザーのフラグによって出し分ける */}
-        <LayoutTheaterTop />
-        <LayoutDirectorTop />
+        {/* <LayoutTheaterTop /> */}
+        {/* <LayoutDirectorTop /> */}
 
       </Layout>
     </>
