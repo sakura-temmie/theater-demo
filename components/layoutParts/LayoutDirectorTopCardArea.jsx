@@ -1,4 +1,4 @@
-import LayoutDirectorTopCard from './LayoutDirectorTopCard';
+// import LayoutDirectorTopCard from './LayoutDirectorTopCard';
 
 export default function LayoutDirecterCardArea({theaterApi,path}) {
   return (

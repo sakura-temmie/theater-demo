@@ -1,4 +1,4 @@
-import LayoutTheaterTopCard from './LayoutTheaterTopCard';
+// import LayoutTheaterTopCard from './LayoutTheaterTopCard';
 
 export default function LayoutTheaterCardArea({actorApi,path}) {
   return (
