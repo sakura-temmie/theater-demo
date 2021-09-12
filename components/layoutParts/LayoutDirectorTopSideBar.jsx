@@ -1,5 +1,5 @@
 import LayoutSideBarSearchBox from "./LayoutSideBarSearchBox"
-import LayoutSideBarSelectBox from './layoutSideBarSelectBox';
+import LayoutSideBarSelectBox from './LayoutSideBarSelectBox';
 
 //演出家topページのサイドバーを実装
 //横幅はw-64で固定
