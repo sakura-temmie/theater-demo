@@ -3,7 +3,7 @@ import LayoutDirectorTopCard from './LayoutDirectorTopCard';
 export default function LayoutDirecterCardArea({theaterApi,path}) {
   return (
     <div className="w-full grid grid-cols-3 gap-3">
-      {theaterApi.map(api =>
+      {/* {theaterApi.map(api =>
         <div className="mx-auto">
           <LayoutDirectorTopCard
             key         = { api.id }
@@ -14,8 +14,8 @@ export default function LayoutDirecterCardArea({theaterApi,path}) {
             area        = {api.area}
             path        = {path}
           />
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </div>
   )
 }
