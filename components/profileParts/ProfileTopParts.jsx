@@ -2,16 +2,16 @@ import ProfileImage from "./ProfileImage";
 import ProfileText from "./ProfileText";
 import ProfileDetail from "./ProfileDetail";
 
-const ProfileTopParts = () => {
+const ProfileTopParts = ({ name, profile, cost, schedule }) => {
   return (
     <>
       <div className="flex space-x-4 justify-center">
-        <ProfileText name={"かくまあり"} text={"自己紹介"} />
+        <ProfileText name={name} text={profile} />
         <ProfileImage />
       </div>
       <div className="flex space-x-4 justify-center">
-        <ProfileDetail text="希望利用額（１週間）　【５０万円】" />
-        <ProfileDetail text="空きスケジュール　直近1ヶ月（要相談）" />
+        <ProfileDetail text={cost} />
+        <ProfileDetail text={schedule} />
       </div>
     </>
   );
