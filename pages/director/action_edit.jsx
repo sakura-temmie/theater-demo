@@ -1,10 +1,11 @@
 import LayoutSideBarSearchBox from "../../components/layoutParts/LayoutSideBarSearchBox";
 import Layout from "../../components/layoutParts/Layout";
-import ProfileTopParts from "../../components/profileParts/ProfileTopParts";
 import ProfileHeading from "../../components/profileParts/ProfileHeading";
 import EditButton from "../../components/editParts/EditButton";
+import EditSelectParts from "../../components/editParts/EditSelectParts";
 
 const action_edit = () => {
+
   const areas = [
     { name: "選択してください", value: "選択してください" },
     { name: "1", value: 1 },
@@ -22,31 +23,33 @@ const action_edit = () => {
   return (
     <Layout title={"演出家公演編集"}>
       <div style={{ width: "960px" }}>
-        <ProfileTopParts />
         <ProfileHeading title={"過去の実績"} />
         <div className="flex">
           <p className="w-1/4 m-3 p-2 border text-center text-base">公演名</p>
           <input
-            className="w-3/4 m-3 p-2 border text-center text-base"
+            className="w-3/4 m-3 p-2 border"
             type="text"
-            defaultValue={"公演名を入力してください"}
-          />
+            placeholder={"公演名を入力してください"}
+            defaultValue={""}
+            />
         </div>
         <div className="flex">
           <p className="w-1/4 m-3 p-2 border text-center text-base">公演内容</p>
           <textarea
-            className="w-3/4 m-3 p-2 border text-center text-base"
+            className="w-3/4 m-3 p-2 border text-base"
             type="text"
-            defaultValue={"公演内容を入力してください"}
-          />
+            placeholder={"公演内容を入力してください"}
+            defaultValue={""}
+            />
         </div>
         <div className="flex">
           <p className="w-1/4 m-3 p-2 border text-center text-base">劇場名</p>
           <input
-            className="w-3/4 m-3 p-2 border text-center text-base"
+            className="w-3/4 m-3 p-2 border text-base"
             type="text"
-            defaultValue={"劇場名を入力してください"}
-          />
+            placeholder={"劇場名を入力してください"}
+            defaultValue={""}
+            />
         </div>
         <div className="flex justify-between ">
           <div className="w-1/4 ml-4">
@@ -58,44 +61,23 @@ const action_edit = () => {
               name2="endDate"
               subTitle2="終了日"
               unit=""
-            />
+              />
           </div>
-          <div className="w-1/4 m-3 border text-center">
-            <p className="w-100% m-3 p-2 shadow-md text-center text-base">
-              公演数
-            </p>
-            <select>
-              {areas.map((area, index) => (
-                <option value={area.value} key={index}>
-                  {area.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="w-1/4 m-3 border text-center">
-            <p className="w-100% m-3 p-2 shadow-md text-center text-base">
-              集客率
-            </p>
-            <select>
-              {percents.map((percent, index) => (
-                <option value={percent.value} key={index}>
-                  {percent.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <EditSelectParts title={"公演数"} optionData={areas} />
+          <EditSelectParts title={"集客率"} optionData={percents} />
         </div>
         <div className="flex">
           <p className="w-1/4 m-3 p-2 border text-center text-base">
             出演キャスト
           </p>
           <textarea
-            className="w-3/4 m-3 p-2 border text-center text-base"
+            className="w-3/4 m-3 p-2 border text-base"
             type="text"
-            defaultValue={"キャストを入力してください"}
+            placeholder={"キャストを入力してください"}
+            defaultValue={""}
           />
         </div>
-        <EditButton title={"保存する"} />
+        <EditButton path="/director/profile" title={"保存する"} />
       </div>
     </Layout>
   );
