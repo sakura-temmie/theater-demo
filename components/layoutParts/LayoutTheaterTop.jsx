@@ -21,7 +21,7 @@ export default function LayoutTheaterTop() {
     <>
         <div className="flex w-4/5 mt-3">
           <LayoutTheaterTopSideBar />
-          <LayoutTheaterTopCardArea actorApi={ dataArray } path="/profile/actor" />
+          <LayoutTheaterTopCardArea actorApi={ dataArray } path="/theater/profile" />
         </div>
     </>
   )
