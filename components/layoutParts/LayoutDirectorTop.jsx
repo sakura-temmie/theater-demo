@@ -28,7 +28,7 @@ export default function LayoutDirectorTop() {
     <>
         <div className="flex w-4/5 mt-3">
         <LayoutDirectorTopSideBar  areaApi={ areaArray }/>
-        <LayoutDirectorTopCardArea theaterApi={ dataArray } path="/profile/theatre" />
+        <LayoutDirectorTopCardArea theaterApi={dataArray} path="/theater/profile" />
         </div>
     </>
   )
