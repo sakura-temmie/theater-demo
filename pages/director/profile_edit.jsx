@@ -34,7 +34,12 @@ const profile_edit = () => {
     <Layout title={"演出家プロフィール編集"}>
       <div style={{ width: "960px" }}>
         <EditButton path="/director/profile" title={"保存する"} />
-        <EditTopParts />
+        <EditTopParts
+          name={director.name}
+          text={director.profile}
+          editCost={director.cost}
+          editSchedule={director.schedule}
+        />
         <ProfileActorResults
           title={results.title}
           theaterName={results.theaterName}
