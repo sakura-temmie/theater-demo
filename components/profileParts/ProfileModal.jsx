@@ -9,7 +9,7 @@ export default function ProfileModal({ button, title, text}) {
     <>
       <button
         type="button"
-        className="mr-5 bg-transparent hover:bg-blue-700 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        className="mr-5 bg-transparent hover:bg-yellow-500 text-yellow-500 font-semibold hover:text-white py-2 px-4 border border-yellow-500 hover:border-transparent rounded"
         onClick={() => setOpen(true)}
         ref={cancelButtonRef}
       >

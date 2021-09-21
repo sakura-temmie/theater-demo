@@ -18,23 +18,37 @@ const ProfileActorResults = (
 ) => {
   return (
     <>
-      <div className="justify-center items-center m-3 p-2 shadow-md text-center text-base">
-        <div className="flex justify-center items-center m-3 p-2 shadow-md text-center text-base">
+      <div className="justify-center items-center m-3 p-2 bg-white text-center text-base">
+        <div className="flex justify-center items-center m-3 p-2 border-b text-center text-base">
           <ProfileTitle title={title} />
         </div>
         <div className="flex justify-between m-10">
-          <div>
+          <div className="text-left">
             <p>劇場名：{theaterName}</p>
             <p>{schedule}</p>
           </div>
-          <div>
-            <ProfileTag text={time} type="回" />
-            <ProfileTag text={customer} type="％" />
+          <div className="flex">
+            <div>
+              <ProfileTag text="公演回数" />
+              <span>{time} 回</span>
+            </div>
+            <div className="ml-3">
+              <ProfileTag text="集客率" />
+              <span>{customer}　％</span>
+            </div>
           </div>
         </div>
         <div className="flex justify-end m-4">
-          <ProfileModal button={actButton} title={actModalTitle} text={actModalText} />
-          <ProfileModal button={castButton} title={castModalTitle} text={castModalText} />
+          <ProfileModal
+            button={actButton}
+            title={actModalTitle}
+            text={actModalText}
+          />
+          <ProfileModal
+            button={castButton}
+            title={castModalTitle}
+            text={castModalText}
+          />
         </div>
       </div>
     </>
