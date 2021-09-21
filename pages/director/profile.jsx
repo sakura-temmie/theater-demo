@@ -34,7 +34,6 @@ const profile = () => {
     <>
       <Layout title={"演出家詳細"}>
         <div style={{ width: "960px" }}>
-          <ProfileButton path="/director/profile_edit" title="編集する" />
           <ProfileTopParts
             name={director.name}
             profile={director.profile}
@@ -42,7 +41,58 @@ const profile = () => {
             schedule={director.schedule}
           />
           <ProfileMiddleParts />
-          <ProfileButton path="/director/action_edit" title={"追加する"} />
+          <ProfileActorResults
+            title={results.title}
+            theaterName={results.theaterName}
+            schedule={results.schedule}
+            time={results.time}
+            customer={results.customer}
+            actButton={"作品内容"}
+            actModalTitle={act.title}
+            actModalText={act.text}
+            castButton={"出演キャスト"}
+            castModalTitle={"出演キャスト"}
+            castModalText={cast.cast}
+          />
+          <ProfileActorResults
+            title={results.title}
+            theaterName={results.theaterName}
+            schedule={results.schedule}
+            time={results.time}
+            customer={results.customer}
+            actButton={"作品内容"}
+            actModalTitle={act.title}
+            actModalText={act.text}
+            castButton={"出演キャスト"}
+            castModalTitle={"出演キャスト"}
+            castModalText={cast.cast}
+          />
+          <ProfileActorResults
+            title={results.title}
+            theaterName={results.theaterName}
+            schedule={results.schedule}
+            time={results.time}
+            customer={results.customer}
+            actButton={"作品内容"}
+            actModalTitle={act.title}
+            actModalText={act.text}
+            castButton={"出演キャスト"}
+            castModalTitle={"出演キャスト"}
+            castModalText={cast.cast}
+          />
+          <ProfileActorResults
+            title={results.title}
+            theaterName={results.theaterName}
+            schedule={results.schedule}
+            time={results.time}
+            customer={results.customer}
+            actButton={"作品内容"}
+            actModalTitle={act.title}
+            actModalText={act.text}
+            castButton={"出演キャスト"}
+            castModalTitle={"出演キャスト"}
+            castModalText={cast.cast}
+          />
           <ProfileActorResults
             title={results.title}
             theaterName={results.theaterName}
