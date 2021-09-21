@@ -19,10 +19,13 @@ export default function LayoutTheaterTop() {
 
   return (
     <>
-        <div className="flex w-4/5 mt-3">
-          <LayoutTheaterTopSideBar />
-          <LayoutTheaterTopCardArea actorApi={ dataArray } path="/theater/profile" />
-        </div>
+      <div className="flex mt-3">
+        <LayoutTheaterTopSideBar />
+        <LayoutTheaterTopCardArea
+          actorApi={dataArray}
+          path="/theater/profile"
+        />
+      </div>
     </>
-  )
+  );
 }
