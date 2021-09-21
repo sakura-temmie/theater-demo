@@ -4,8 +4,9 @@
 //maxCapacity   => 劇場のキャパシティ
 //usageAmount   => １週間の利用料金
 //area          => 劇場の所在地があるエリア
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
+import cssClass from "./Layout.module.css";
 
 export default function LayoutDirectorTopCard({
   imgUrl,
@@ -16,20 +17,35 @@ export default function LayoutDirectorTopCard({
 }) {
   return (
     <Link href={path}>
-      <div className="shadow-lg w-full">
-        <div className="shadow-lg w-72 h-48 object-fit mb-2">
-          <Image
-            className="object-fit"
-            src={imgUrl}
-            alt=""
-            width={300}
-            height={200}
-          />
-        </div>
-        <div className="px-2 pb-2">
-          <p className="text-xl"> {name} </p>
-          <p> 通算公演数 : {totalNumberPerformances} 公演</p>
-          <p> 最近の公演 : {currentPerformance} </p>
+      <div className="w-full cursor-pointer">
+        <div className={cssClass.img_wrap}>
+          <div className="mx-3 mb-20 bg-white">
+            <Image
+              src={imgUrl}
+              alt=""
+              height="400"
+              width="600"
+              objectFit="cover"
+            />
+            <div className="bg-white py-2 px-6">
+              <p className="text-xl my-4"> {name} </p>
+              {/* <div className="flex mt-8"> */}
+              <div className="flex pl-2">
+                <p className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2 ">
+                  通算公演数
+                </p>
+                <p className="pt-1 text-sm font-thin">
+                  {totalNumberPerformances} 公演
+                </p>
+              </div>
+              <div className="flex pl-2">
+                <p className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2 ">
+                  最近の公演
+                </p>
+                <p className="pt-1 text-sm font-thin">{currentPerformance}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Link>

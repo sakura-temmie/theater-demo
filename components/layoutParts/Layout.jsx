@@ -1,38 +1,47 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import banner from "../../public/icon.png";
 import LayoutButton from "./LayoutButton";
 
 //childrenはインポート先でラップしてる全てのコンテンツが入ってくる
 //titleはLayoutが呼び出された時にページから特定のタイトルを受け取る
 export default function Layout({ children, title }) {
   return (
-    <div className="flex justify-center item-center flex-col min-h-screen text-gray-600 text-sm font-mono">
+    <div className="flex flex-col text-gray-600 text-sm font-sans min-h-screen">
       <Head>
         {/* プロップスで渡された値を動的に受け取る */}
         <title>{title}</title>
       </Head>
-      <header>
-        <nav className="bg-gray-100 w-screen">
-          <div className="flex items-center pl-8 h-24">
-            <div className="container flex justify-between mx-auto">
-              <Link href="/">
-                <a className="text-gray-500 bg-white hover:bg-white px-4 py-3 rounded">
-                  Logo
+      <header className="sticky top-0 z-10 bg-gray-100 w-screen border-b border-gray-200 items-center text-center justify-center">
+        <nav>
+          <div className="flex items-center h-24 items-center text-center justify-center">
+            {/* <div className="container flex items-center"> */}
+            <Image src={banner} alt="main Image" width={100} height={100} />
+            <Link href="/">
+              <p className="text-2xl cursor-pointer pl-2">Theater Check</p>
+            </Link>
+            <div className="ml-auto">
+              <LayoutButton path="/" title="演出家を探す" />
+              <LayoutButton path="/" title="メッセージ" />
+              <Link href="/director/profile">
+                <a className="text-gray-400 bg-yellow-50 hover:bg-yellow-100 p-10 rounded cursor-pointer">
+                  プロフィール
                 </a>
               </Link>
-              <div className="px-4 py-3 space-x-4">
-                <LayoutButton path="/" title="演出家を探す" />
-                <LayoutButton path="/" title="メッセージ" />
-                <LayoutButton path="/director/profile" title="プロフィール" />
-              </div>
             </div>
           </div>
+          {/* </div> */}
         </nav>
       </header>
-      <main className="flex flex-1 justify-center items-center flex-col w-screen mt-4 w-4/5">
+      <main className="flex flex-col flex-grow items-center bg-gray-100 pt-20 px-3">
         {children}
-        {/* <div style={{ width: 960 }}>{children}</div> */}
       </main>
+      <footer className="bg-white">
+        <p className="p-5 text-center text-xs">
+          Copyright © 2021 LAB 11, inc. All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 }

@@ -26,10 +26,13 @@ export default function LayoutDirectorTop() {
 
   return (
     <>
-        <div className="flex w-4/5 mt-3">
-        <LayoutDirectorTopSideBar  areaApi={ areaArray }/>
-        <LayoutDirectorTopCardArea theaterApi={ dataArray } path="/director/profile" />
-        </div>
+      <div className="flex mt-3">
+        <LayoutDirectorTopSideBar areaApi={areaArray} />
+        <LayoutDirectorTopCardArea
+          theaterApi={dataArray}
+          path="/director/profile"
+        />
+      </div>
     </>
-  )
+  );
 }

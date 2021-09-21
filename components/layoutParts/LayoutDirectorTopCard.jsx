@@ -4,8 +4,9 @@
 //maxCapacity   => 劇場のキャパシティ
 //usageAmount   => １週間の利用料金
 //area          => 劇場の所在地があるエリア
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
+import cssClass from "./Layout.module.css";
 
 export default function LayoutDirectorTopCard({
   imgUrl,
@@ -13,25 +14,45 @@ export default function LayoutDirectorTopCard({
   maxCapacity,
   usageAmount,
   area,
-  path
+  path,
 }) {
   return (
     <Link href={path}>
-      <div className="shadow-2xl rounded-md w-full">
-        <div className="shadow-lg w-72 h-48 object-cover mb-2">
-          <Image
-            className="shadow-lg w-72 h-48 object-fit mb-2"
-            src={imgUrl}
-            alt=""
-            width={300}
-            height={200}
-          />
-        </div>
-        <div className="px-2 pb-2">
-          <p className="text-lg"> {theaterName} </p>
-          <p> 最大収容人数 : {maxCapacity} 人</p>
-          <p> 希望利用額（１週間）: {usageAmount} 万円</p>
-          <p> エリア : {area} </p>
+      <div className="w-full cursor-pointer">
+        <div className={cssClass.img_wrap}>
+          <div className="mx-3 bg-white mb-20">
+            <Image
+              className="w-72 h-48 object-fit mb-2"
+              src={imgUrl}
+              alt=""
+              height="400"
+              width="600"
+              objectFit="cover"
+            />
+            <div className="bg-white py-2 px-6">
+              <p className="text-xl my-4"> {theaterName} </p>
+              <div className="px-2 pb-2">
+                <div className="flex pl-2">
+                  <p className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2 ">
+                    最大収容人数
+                  </p>
+                  <p className="pt-1 text-sm font-thin">{maxCapacity} 人</p>
+                </div>
+                <div className="flex pl-2">
+                  <p className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2 ">
+                    希望利用額（１週間）
+                  </p>
+                  <p className="pt-1 text-sm font-thin"> {usageAmount} 万円</p>
+                </div>
+                <div className="flex pl-2">
+                  <p className="bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 mr-2 mb-2 ">
+                    エリア
+                  </p>
+                  <p className="pt-1 text-sm font-thin">{area}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Link>
