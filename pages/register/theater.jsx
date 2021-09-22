@@ -47,12 +47,12 @@ export default function Register() {
   };
 
   return (
-    <Layout>
+    <Layout title="劇場新規登録">
       <div className="max-w-md w-full space-y-8 bg-white rounded p-10">
         <div className="flex flex-col items-center">
           <Image src={Logo} alt="Logo" width="100" height="100" />
           <h2 className="mt-3 text-center text-3xl font-extrabold text-gray">
-            新規作成
+            新規登録
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             アカウントをお持ちの場合は　
