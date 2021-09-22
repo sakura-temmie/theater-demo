@@ -40,7 +40,7 @@ export default function Register() {
             return res.json();
           }
         })
-      router.push("/");
+      router.push("/login");
     } catch (err) {
       alert(err);
     }
