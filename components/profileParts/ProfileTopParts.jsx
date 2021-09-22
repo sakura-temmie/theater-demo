@@ -8,10 +8,13 @@ const ProfileTopParts = ({ name, profile, cost, schedule }) => {
   return (
     <>
       <div className="flex flex-col space-x-4 justify-center">
-        <di className="flex items-center justify-between">
-          <p className="text-4xl m-10">{name}</p>
+        <div className="flex items-center justify-between">
+          <div>
+          <p className="ml-10 text-gray-400">director</p>
+          <p className="text-4xl ml-10 mb-10 mt-3">{name}</p>
+          </div>
           <ProfileButton path="/director/profile_edit" title="編集する" />
-        </di>
+        </div>
         <ProfileImage />
       </div>
       <div className="flex space-x-4 justify-center">

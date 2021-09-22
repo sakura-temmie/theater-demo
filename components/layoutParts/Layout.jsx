@@ -19,7 +19,7 @@ export default function Layout({ children, title }) {
             {/* <div className="container flex items-center"> */}
             <Image src={banner} alt="main Image" width={100} height={100} />
             <Link href="/">
-              <p className="text-2xl cursor-pointer pl-2">Theater Check</p>
+              <p className="text-2xl cursor-pointer pl-2">Spot Light</p>
             </Link>
             <div className="ml-auto">
               <LayoutButton path="/" title="演出家を探す" />
@@ -37,8 +37,8 @@ export default function Layout({ children, title }) {
       <main className="flex flex-col flex-grow items-center bg-gray-100 pt-20 px-3">
         {children}
       </main>
-      <footer className="bg-white">
-        <p className="p-5 text-center text-xs">
+      <footer className="bg-white ">
+        <p className="p-5 pb-10 text-center text-xs">
           Copyright © 2021 LAB 11, inc. All Rights Reserved.
         </p>
       </footer>
