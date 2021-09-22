@@ -10,12 +10,11 @@ const cookie = new Cookie();
 
 export default function Register() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(true);
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     try {
       await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}login`, {
         method: "POST",
@@ -30,7 +29,7 @@ export default function Register() {
       })
         .then((res) => {
           if (res.status === 400) {
-            throw "authentication failed";
+            throw "認証が失敗しました";
           } else if (res.ok) {
             return res.json();
           }
@@ -42,36 +41,6 @@ export default function Register() {
       router.push("/");
     } catch (err) {
       alert(err);
-    }
-  };
-
-  const authUser = async (e) => {
-    e.preventDefault();
-    console.log("try");
-    if (isLogin) {
-      login();
-    } else {
-      try {
-        await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}register`, {
-          method: "POST",
-          body: JSON.stringify({
-            name: username,
-            email: email,
-            password: password,
-          }),
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }).then((res) => {
-          if (res.status === 400) {
-            throw "authentication failed";
-          }
-        });
-        login();
-      } catch (err) {
-        alert(err);
-      }
     }
   };
 
@@ -93,7 +62,7 @@ export default function Register() {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={authUser}>
+        <form className="mt-8 space-y-6" onSubmit={login}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
