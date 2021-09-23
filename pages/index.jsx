@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Layout from "../components/layoutParts/Layout"
 import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop"
 import LayoutTheaterTop from "../components/layoutParts/LayoutTheaterTop"
@@ -5,47 +6,55 @@ import Cookie from "universal-cookie";
 
 export default function Home() {
 
-  //クッキーの認証トークンを取得
-  (async () => {
+  //state
+  const [page, setPage] = useState("")
+
+  //初回のみ実行
+  useEffect(() => {
+    selectPage()
+  },[])
+
+  //ロールによってpageを切り分ける
+  const showPage = (role) => {
+    return role === 10 ?
+      <LayoutTheaterTop /> :
+      <LayoutDirectorTop />
+  }
+
+
+  //クッキーの認証トークンを取得後、ページをセット
+  const selectPage = async () => {
+    //クッキーの取得
+    const accessToken = await new Cookie().get("access_token")
+    // await setAccessToken(new Cookie().get("access_token"))
     try {
-      //クッキーの取得
-      const cookie = await new Cookie();
-      const accessToken = await cookie.get("access_token")
       await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}get_user`, {
-        method: "POST",
-        body: JSON.stringify({
-          token: accessToken,
-        }),
+        method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
         },
-      })
-        .then((res) => {
+      }).then(res => {
           if (res.status === 400) {
-            throw "authentication failed";
+            throw "authentication failed"
           } else if (res.ok) {
-            return res.json();
+            return res.json()
           }
-        })
-        .then((data) => {
-          console.log(data)
-        });
+      }).then(data => {
+        setPage(showPage(data.user.role))
+      })
     } catch (err) {
       alert(err);
+      return
     }
-  })();
+  }
 
   return (
     <>
       <Layout title="Top">
-
-        {/* ここにコンテンツを配置していく */}
-
-        {/* トップページはログインユーザーのフラグによって出し分ける */}
-        <LayoutTheaterTop />
-        <LayoutDirectorTop />
-
+        {/* ページをを実装する */}
+        { page }
       </Layout>
     </>
   )
