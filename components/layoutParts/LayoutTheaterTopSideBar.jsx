@@ -1,13 +1,17 @@
+import {useState} from 'react'
 import LayoutSideBarSearchBox from "./LayoutSideBarSearchBox";
 import LayoutSideBarSelectBox from "./LayoutSideBarSelectBox";
 
 //劇場topページのサイドバーを実装
 //横幅はw-64で固定
 
-export default function LayoutTheaterTopSideBar() {
+export default function LayoutTheaterTopSideBar({ action }) {
+
+  const [date, setDate] = useState("")
+
   return (
     <aside className="w-72">
-      <form className="sticky top-10">
+      {/* <form className="sticky top-10"> */}
         <div className="p-4 bg-white rounded-md shadow-md">
           <div className="flex items-center my-4">
             <svg
@@ -32,15 +36,16 @@ export default function LayoutTheaterTopSideBar() {
               subTitle="日程で絞り込み"
               name="month"
               optionData={[]}
+              action={setDate}
             />
           </div>
           <div className="w-1/2 mx-auto">
-            <button className=" bg-yellow-300 hover:bg-yellow-400 text-white font-bold rounded w-full h-8 mt-3">
+            <button onClick={() => action(date) } className=" bg-yellow-300 hover:bg-yellow-400 text-white font-bold rounded w-full h-8 mt-3">
               検索
             </button>
           </div>
         </div>
-      </form>
+      {/* </form> */}
     </aside>
   );
 }

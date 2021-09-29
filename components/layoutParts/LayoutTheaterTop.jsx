@@ -37,11 +37,46 @@ export default function LayoutTheaterTop() {
     }
   }
 
+  const getProfile2 = async (date) => {
+    console.log(date)
+    const freeSchedule = String(date)
+
+    //クッキーの取得
+    const accessToken = await new Cookie().get("access_token")
+    // await setAccessToken(new Cookie().get("access_token"))
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}directors/search`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          token: accessToken,
+          free_schedule: freeSchedule,
+        })
+      }).then(res => {
+          if (res.status === 400) {
+            throw "authentication failed"
+          } else if (res.ok) {
+            return res.json()
+          }
+      }).then(data => {
+        console.log("-----------")
+        console.log(data)
+        setProfileData(data.data)
+      })
+    } catch (err) {
+      alert(err);
+      return
+    }
+  }
+
 
   return (
     <>
-      <div className="flex mt-3">
-        <LayoutTheaterTopSideBar />
+      <div className="flex mt-3 w-full">
+        <LayoutTheaterTopSideBar action={ getProfile2 } />
         <LayoutTheaterTopCardArea
           directorApi={profileData}
           path="/theater/profile"
