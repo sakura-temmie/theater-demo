@@ -9,6 +9,7 @@ export default function LayoutSideBarSelectBox({
   subTitle,
   name,
   optionData,
+  action
 }) {
   {/*  titleの値によってSelectBoxを出し分ける   */ }
   const months = ["",1,2,3,4,5,6,7,8,9,10,11,12]
@@ -17,15 +18,15 @@ export default function LayoutSideBarSelectBox({
     select =
       <div>
         <span>直近 </span>
-        <select className="border border-blue-400" name={name}>
+        <select className="border border-blue-400" name={name} onChange={e => action(e.target.value)}>
           {months.map(month => <option key={month} value={month}> {month} </option>)}
         </select>
         <span> 月以降の空き</span>
       </div>
   } else {
     select =
-      <select className="w-full border border-blue-400" name={name}>
-        {optionData.map((data) => <option key={data.id} value={data.areaName}> {data.areaName} </option>)}
+      <select className="w-full border border-blue-400" name={name}  onChange={e => action(e.target.value)}>
+        {optionData.map((data,index) => <option key={index + 1} value={index === 0 ? "" : index + 1}> {data} </option>)}
       </select>
   }
   return (

@@ -31,7 +31,7 @@ export default function Layout({ children, title }) {
             </Link>
             <div className="ml-auto flex ">
               <LayoutButton path="/" title="演出家を探す" />
-              <LayoutButton path="/" title="メッセージ" />
+              <LayoutButton path="/chat" title="メッセージ" />
               <LayoutButton path="/director/profile" title="プロフィール" />
               <p
                 onClick={logout}

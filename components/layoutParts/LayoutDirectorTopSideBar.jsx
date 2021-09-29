@@ -1,13 +1,21 @@
+import { useState } from "react";
 import LayoutSideBarSearchBox from "./LayoutSideBarSearchBox"
 import LayoutSideBarSelectBox from './LayoutSideBarSelectBox';
 
 //演出家topページのサイドバーを実装
 //横幅はw-64で固定
-export default function LayoutDirectorTopSideBar({areaApi}) {
+export default function LayoutDirectorTopSideBar({ areaApi, action }) {
+
+  const [minMoney, setMinMoney] = useState("")
+  const [maxMoney, setMaxMoney] = useState("")
+  const [minCapacity,setMinCapacity] = useState("")
+  const [maxCapacity,setMaxCapacity] = useState("")
+  const [areaNum, setAreaNum] = useState("")
+  const [date,setDate] = useState("")
 
   return (
     <aside className="w-72">
-      <form className="sticky top-10">
+      {/* <form className="sticky top-10"> */}
         <div className="p-4 bg-white rounded-md shadow-md">
           {" "}
           <div className="flex items-center my-4">
@@ -33,6 +41,7 @@ export default function LayoutDirectorTopSideBar({areaApi}) {
               subTitle="日程で絞り込み"
               name="month"
               optionData={[]}
+              action={setDate}
             />
           </div>
           <div className="mb-2">
@@ -41,6 +50,7 @@ export default function LayoutDirectorTopSideBar({areaApi}) {
               subTitle="地域で絞り込み"
               name="area"
               optionData={areaApi}
+              action={setAreaNum}
             />
           </div>
           <div className="mb-2">
@@ -52,6 +62,8 @@ export default function LayoutDirectorTopSideBar({areaApi}) {
               name2="maxCost"
               subTitle2="上限"
               unit="万円"
+              action1={setMinMoney}
+              action2={setMaxMoney}
             />
           </div>
           <div className="mb-2">
@@ -63,15 +75,17 @@ export default function LayoutDirectorTopSideBar({areaApi}) {
               name2="maxCapacity"
               subTitle2="上限"
               unit="人"
+              action1={setMinCapacity}
+              action2={setMaxCapacity}
             />
           </div>
           <div className="w-1/2 mx-auto">
-            <button className="bg-yellow-300 hover:bg-yellow-500 text-white font-bold rounded w-full h-8 mt-3">
+            <button onClick={() => action(minMoney,maxMoney,minCapacity,maxCapacity,areaNum,date)} className="bg-yellow-300 hover:bg-yellow-500 text-white font-bold rounded w-full h-8 mt-3">
               検索
             </button>
           </div>
         </div>
-      </form>
+      {/* </form> */}
     </aside>
   );
 }
