@@ -1,61 +1,35 @@
-import { useState, useEffect } from "react";
-import Layout from "../components/layoutParts/Layout"
-import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop"
-import LayoutTheaterTop from "../components/layoutParts/LayoutTheaterTop"
-import Cookie from "universal-cookie";
+import LayoutNotLogin from "../components/layoutParts/Layout";
+import Link from "next/link"
 
 export default function Home() {
-
-  //state
-  const [page, setPage] = useState("")
-
-  //初回のみ実行
-  useEffect(() => {
-    selectPage()
-  },[])
-
-  //ロールによってpageを切り分ける
-  const showPage = (role) => {
-    return role === 10 ?
-      <LayoutTheaterTop /> :
-      <LayoutDirectorTop />
-  }
-
-
-  //クッキーの認証トークンを取得後、ページをセット
-  const selectPage = async () => {
-    //クッキーの取得
-    const accessToken = await new Cookie().get("access_token")
-    // await setAccessToken(new Cookie().get("access_token"))
-    try {
-      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}get_user`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`
-        },
-      }).then(res => {
-          if (res.status === 400) {
-            throw "authentication failed"
-          } else if (res.ok) {
-            return res.json()
-          }
-      }).then(data => {
-        setPage(showPage(data.user.role))
-      })
-    } catch (err) {
-      alert(err);
-      return
-    }
-  }
-
   return (
-    <>
-      <Layout title="Top">
-        {/* ページをを実装する */}
-        { page }
-      </Layout>
-    </>
-  )
+    <LayoutNotLogin title="Spotlight">
+      <div className="w-64">
+        <Link href="/login" passHref>
+        <button
+          type="submit"
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+          >
+          ログイン
+        </button>
+          </Link>
+        <Link href="/register/theater" passHref>
+        <button
+          type="submit"
+          className="mt-5 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+        >
+          劇場関係者の方
+        </button>
+          </Link>
+        <Link href="/register/director" passHref>
+        <button
+          type="submit"
+          className="mt-5 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+          >
+          演出家の方
+        </button>
+          </Link>
+      </div>
+    </LayoutNotLogin>
+  );
 }

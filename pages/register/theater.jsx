@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layoutParts/Layout";
 import Logo from "../../public/icon.png";
 import Image from "next/image";
-
+import Link from "next/link";
 
 export default function Register() {
   const router = useRouter();
@@ -16,7 +16,10 @@ export default function Register() {
     /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
   const isTrueEmail = regex.test(email);
   const isTruePassword = password === truePassword;
-  const isTrueRegister = isTrueEmail == true && isTruePassword == true && !(password == null || password == "");
+  const isTrueRegister =
+    isTrueEmail == true &&
+    isTruePassword == true &&
+    !(password == null || password == "");
 
   const createUser = async (e) => {
     e.preventDefault();
@@ -27,19 +30,19 @@ export default function Register() {
           name: username,
           email: email,
           password: password,
-          role: "10"
+          role: "10",
         }),
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
       }).then((res) => {
-          if (res.status === 400) {
-            throw "新規登録が失敗しました";
-          } else if (res.ok) {
-            return res.json();
-          }
-        })
+        if (res.status === 400) {
+          throw "新規登録が失敗しました";
+        } else if (res.ok) {
+          return res.json();
+        }
+      });
       router.push("/login");
     } catch (err) {
       alert(err);
@@ -56,12 +59,14 @@ export default function Register() {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             アカウントをお持ちの場合は　
-            <a
-              href="#"
-              className="font-medium text-yellow-400 hover:text-yellow-500"
-            >
-              ログイン
-            </a>
+            <Link href="/login">
+              <a
+                href=""
+                className="font-medium text-yellow-400 hover:text-yellow-500"
+              >
+                ログイン
+              </a>
+            </Link>
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={createUser}>
@@ -143,9 +148,7 @@ export default function Register() {
                 <span className="text-xs pl-2 text-red-400">
                   入力されている情報が正しくありません
                 </span>
-                <button
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-400 cursor-not-allowed"
-                >
+                <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-400 cursor-not-allowed">
                   <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
                   新規作成
                 </button>
