@@ -4,6 +4,7 @@ import Cookie from "universal-cookie";
 import Layout from "../components/layoutParts/Layout";
 import Logo from "../public/icon.png";
 import Image from "next/image";
+import Link from "next/link";
 
 //クッキーのインスタンスを作る
 const cookie = new Cookie();
@@ -35,10 +36,10 @@ export default function Register() {
           }
         })
         .then((data) => {
-          const options = { path: "/" };
+          const options = { path: "/top" };
           cookie.set("access_token", data.token, options);
         });
-      router.push("/");
+      router.push("/top");
     } catch (err) {
       alert(err);
     }
@@ -54,12 +55,14 @@ export default function Register() {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             アカウントをお持ちですか？　
-            <a
-              href="#"
-              className="font-medium text-yellow-400 hover:text-yellow-500"
-            >
-              新規登録
-            </a>
+            <Link href="/" passHref>
+              <a
+                href=""
+                className="font-medium text-yellow-400 hover:text-yellow-500"
+              >
+                新規登録
+              </a>
+            </Link>
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={login}>
@@ -100,7 +103,6 @@ export default function Register() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
             >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
               ログイン
             </button>
           </div>
