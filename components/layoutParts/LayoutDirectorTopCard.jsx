@@ -7,18 +7,30 @@
 import Link from "next/link";
 import Image from "next/image";
 import cssClass from "./Layout.module.css";
+import { useRouter } from "next/router";
 
 export default function LayoutDirectorTopCard({
+  id,
   imgUrl,
   theaterName,
   maxCapacity,
   usageAmount,
   area,
   path,
-}) {
+})
+{
+  const router = useRouter();
+  //カードをクリックした後、遷移先にIDを渡す
+  const passUserId = () => {
+    router.push({
+      pathname: "theater/profile",
+      query: { id: id },
+    });
+  };
+
   return (
-    <Link href={path}>
-      <div className="w-full cursor-pointer">
+    // <Link href={path} passHref>
+      <div className="w-full cursor-pointer" onClick={passUserId}>
         <div className={cssClass.img_wrap}>
           <div className="mx-3 bg-white mb-20">
             <Image
@@ -55,6 +67,6 @@ export default function LayoutDirectorTopCard({
           </div>
         </div>
       </div>
-    </Link>
+    // </Link>
   );
 }

@@ -12,7 +12,7 @@ const cookie = new Cookie();
 export default function Layout({ children, title }) {
   const router = useRouter();
   const logout = () => {
-    cookie.remove("access_token");
+    localStorage.removeItem("access_token");
     router.push("/");
   };
   return (
@@ -44,7 +44,7 @@ export default function Layout({ children, title }) {
           {/* </div> */}
         </nav>
       </header>
-      <main className="flex flex-col flex-grow items-center bg-gray-100 pt-20 px-3">
+      <main className="flex flex-col flex-grow items-center bg-gray-100 pt-20 px-3 pb-10">
         {children}
       </main>
       <footer className="bg-white">

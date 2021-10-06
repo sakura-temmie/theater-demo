@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Cookie from "universal-cookie";
+// import Cookie from "universal-cookie";
 import Layout from "../components/layoutParts/Layout";
 import Logo from "../public/icon.png";
 import Image from "next/image";
 import Link from "next/link";
 
 //クッキーのインスタンスを作る
-const cookie = new Cookie();
+// const cookie = new Cookie();
 
 export default function Register() {
   const router = useRouter();
@@ -36,8 +36,7 @@ export default function Register() {
           }
         })
         .then((data) => {
-          const options = { path: "/top" };
-          cookie.set("access_token", data.token, options);
+          localStorage.setItem("access_token", data.token);
         });
       router.push("/top");
     } catch (err) {
