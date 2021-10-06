@@ -5,9 +5,9 @@ export default function LayoutTheaterCardArea({ directorApi, path }) {
   return (
     <div className="w-full grid grid-cols-3 gap-3">
       {directorApi.map(api =>
-        <div className="mx-auto">
+        <div className="mx-auto" key={api.id}>
           <LayoutTheaterTopCard
-            key         = { api.id }
+            id          = { api.id }
             imgUrl      = { imgPath + api.main_photo }
             name        = { api.name }
             totalNumberPerformances = { api.performances_count }

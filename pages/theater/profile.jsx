@@ -1,26 +1,64 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Layout from "../../components/layoutParts/Layout";
-import ProfileButton from "../../components/profileParts/ProfileButton";
 import ProfileTheaterTop from "../../components/profileParts/ProfileTheaterTop";
 import ProfileTheaterDetail from "../../components/profileParts/ProfileTheaterDetail";
 
-const profile = () => {
+// post：getStaticPropsから取得したデータ
+export default function Test({ post }) {
+  const [theaterData, setTheaterData] = useState([]);
+  const [theaterDetail, setTheaterDetail] = useState([]);
 
-  const theater = {
-    title: "東京芸術劇場",
-    capacity: "最大収容人数　5０００人",
-    station: "最寄駅　　JR中央線　ー　新宿駅",
-    cost: "希望利用額（１週間）　　　　５０万円",
-    address: "171-0021　東京都豊島区西池袋一丁目8番1号",
-    schedule: "空きスケジュール　直近1ヶ月（要相談）",
-    detail:
-      "東京芸術劇場は、東京都が都民のための音楽・演劇・歌劇・舞踊等の芸術文化の振興とその国際的交流を図るため、芸術文化施設として、平成2年10月に開館しました。世界最大級のパイプオルガンを有するクラシック専用の大ホール（コンサートホール）、演劇・舞踊等の公演を行う中ホール（プレイハウス）と2つの小ホール（シアターイーストとシアターウエスト）を備えています。加えて、4つの展示スペース、大小の会議室やリハーサル室も併せ持ち、展示や講座、ワークショップ等、上演以外の芸術活動も行うことができる複合的な芸術文化施設です。当劇場の管理運営は、現在、公益財団法人東京都歴史文化財団が行っています。",
+  const router = useRouter();
+  const pId = router.query.id;
+  //初回のみ実行
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      getTheaterData(pId);
+    }
+  }, []);
+
+  const getTheaterData = async ( userId ) => {
+    const accessToken = await localStorage.getItem("access_token");
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}theaters/${userId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => {
+          if (res.status === 400) {
+            throw "authentication failed";
+          } else if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          setTheaterData(data.data);
+          setTheaterDetail(data.data.theater);
+        });
+    } catch (err) {
+      alert(err);
+      return;
+    }
   };
 
+  const theater = {
+    title: `${theaterData.name}`,
+    capacity: `${theaterDetail.capacity}`,
+    station: `${theaterDetail.address}`,
+    cost: `${theaterDetail.price}`,
+    address: `${theaterDetail.address}`,
+    schedule: `${theaterDetail.free_schedule}`,
+    detail: `${theaterDetail.information}`,
+  };
   return (
     <>
       <Layout title={"劇場詳細"}>
-        <div style={{ width: "960px" }}>
-          <ProfileButton title={"編集する"} />
+        <div style={{ width: "960px" }} className="pb-10">
           <ProfileTheaterTop
             title={theater.title}
             capacity={theater.capacity}
@@ -29,13 +67,9 @@ const profile = () => {
             address={theater.address}
             schedule={theater.schedule}
           />
-          <ProfileTheaterDetail
-            detail={theater.detail}
-          />
+          <ProfileTheaterDetail detail={theater.detail} />
         </div>
       </Layout>
     </>
   );
-};
-
-export default profile;
+}

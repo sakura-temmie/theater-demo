@@ -1,94 +1,112 @@
 import { useState, useEffect } from "react";
 import Cookie from "universal-cookie";
-import LayoutDirectorTopSideBar from "./LayoutDirectorTopSideBar"
-import LayoutDirectorTopCardArea from "./LayoutDirectorTopCardArea"
+import LayoutDirectorTopSideBar from "./LayoutDirectorTopSideBar";
+import LayoutDirectorTopCardArea from "./LayoutDirectorTopCardArea";
 
 //演出家トップページにコンテンツ
 export default function LayoutDirectorTop() {
-  const [profileData, setProfileData] = useState([])
+  const [profileData, setProfileData] = useState([]);
 
-   //初回のみ実行
+  //初回のみ実行
   useEffect(() => {
-    getProfile()
-  },[])
+    getProfile();
+  }, []);
 
   //劇場または演出家のプロフィール一覧を取得
   const getProfile = async () => {
     //クッキーの取得
     try {
       //クッキーの取得
-      const accessToken = await new Cookie().get("access_token")
-      const path =  "theaters"
+      // const accessToken = await new Cookie().get("access_token");
+      const accessToken = await localStorage.getItem("access_token");
+
+      const path = "theaters";
       await fetch(process.env.NEXT_PUBLIC_RESTAPI_URL + path, {
-         method: "GET",
-         headers: {
+        method: "GET",
+        headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
-      }).then(res => {
-        return res.json()
-      }).then(data => {
-        setProfileData(data.data)
       })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setProfileData(data.data);
+          localStorage.setItem("test", JSON.stringify(data.data));
+        });
     } catch (err) {
-      alert(err)
+      alert(err);
     }
-  }
+  };
 
   //検索バー用のプロフィールデータの取得
-   //クッキーの認証トークンを取得後、ページをセット
-  const getProfile2 = async (minMoney, maxMoney, minCapacity, maxCapacity, areaNum, date) => {
-    console.log(minMoney)
-    console.log(maxMoney)
-    console.log(minCapacity)
-    console.log(maxCapacity)
-    console.log(areaNum)
-    console.log(date)
-    const freeSchedule = String(date)
-    const area = String(areaNum)
-    const lowerLimitPrice = String(minMoney)
-    const upperLimitPrice = String(maxMoney)
-    const lowerLimitCapacity = String(minCapacity)
-    const upperLimitCapacity = String(maxCapacity)
+  //クッキーの認証トークンを取得後、ページをセット
+  const getProfile2 = async (
+    minMoney,
+    maxMoney,
+    minCapacity,
+    maxCapacity,
+    areaNum,
+    date
+  ) => {
+    console.log(minMoney);
+    console.log(maxMoney);
+    console.log(minCapacity);
+    console.log(maxCapacity);
+    console.log(areaNum);
+    console.log(date);
+    const freeSchedule = String(date);
+    const area = String(areaNum);
+    const lowerLimitPrice = String(minMoney);
+    const upperLimitPrice = String(maxMoney);
+    const lowerLimitCapacity = String(minCapacity);
+    const upperLimitCapacity = String(maxCapacity);
 
     //クッキーの取得
-    const accessToken = await new Cookie().get("access_token")
+    // const accessToken = await new Cookie().get("access_token");
+    const accessToken = await localStorage.getItem("access_token");
+
     // await setAccessToken(new Cookie().get("access_token"))
     try {
       await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}theaters/search`, {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           token: accessToken,
           free_schedule: freeSchedule,
-          area : area,
-          lower_limit_price : lowerLimitPrice,
-          upper_limit_price : upperLimitPrice,
-          lower_limit_capacity : lowerLimitCapacity,
-          upper_limit_capacity : upperLimitCapacity,
-        })
-      }).then(res => {
-          if (res.status === 400) {
-            throw "authentication failed"
-          } else if (res.ok) {
-            return res.json()
-          }
-      }).then(data => {
-        console.log("-----------")
-        console.log(data)
-        setProfileData(data.data)
+          area: area,
+          lower_limit_price: lowerLimitPrice,
+          upper_limit_price: upperLimitPrice,
+          lower_limit_capacity: lowerLimitCapacity,
+          upper_limit_capacity: upperLimitCapacity,
+        }),
       })
+        .then((res) => {
+          if (res.status === 400) {
+            throw "authentication failed";
+          } else if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          console.log("-----------");
+          console.log(data);
+          setProfileData(data.data);
+        });
     } catch (err) {
       alert(err);
-      return
+      return;
     }
-  }
+  };
 
-  {/*  サイドバーのエリア名を表示するためのダミーデータ  */}
+  {
+    /*  サイドバーのエリア名を表示するためのダミーデータ  */
+  }
   const area = [
     "",
     "銀座・有楽町・築地",
@@ -150,16 +168,13 @@ export default function LayoutDirectorTop() {
     "内房・外房・銚子",
     "千葉・幕張",
     "市川・船橋・津田沼",
-    "舞浜・浦安・行徳"
-  ]
+    "舞浜・浦安・行徳",
+  ];
 
   return (
     <>
       <div className="flex mt-3 w-full">
-        <LayoutDirectorTopSideBar
-          areaApi={area}
-          action ={getProfile2}
-        />
+        <LayoutDirectorTopSideBar areaApi={area} action={getProfile2} />
         <LayoutDirectorTopCardArea
           theaterApi={profileData}
           path="/director/profile"

@@ -7,26 +7,38 @@
 import Link from "next/link";
 import Image from "next/image";
 import cssClass from "./Layout.module.css";
+import { useRouter } from "next/router";
 
 export default function LayoutDirectorTopCard({
+  id,
   imgUrl,
   name,
   totalNumberPerformances,
   currentPerformance,
   path,
 }) {
+  const router = useRouter();
+
+  //カードをクリックした後、遷移先にIDを渡す
+  const passUserId = () => {
+    router.push({
+      pathname: "director/profile",
+      query: {id: id},
+    })
+  }
+
   return (
-    <Link href={path}>
-      <div className="w-full cursor-pointer">
+    // <Link href={path} passHref>
+      <div className="w-full cursor-pointer" onClick={passUserId}>
         <div className={cssClass.img_wrap}>
-          <div className="mx-3 mb-20 bg-white">
+        <div className="mx-3 mb-20 bg-white">
             <Image
               src={imgUrl}
               alt=""
               height="400"
               width="600"
               objectFit="cover"
-            />
+              />
             <div className="bg-white py-2 px-6">
               <p className="text-xl my-4"> {name} </p>
               {/* <div className="flex mt-8"> */}
@@ -48,6 +60,6 @@ export default function LayoutDirectorTopCard({
           </div>
         </div>
       </div>
-    </Link>
+    // </Link>
   );
 }
