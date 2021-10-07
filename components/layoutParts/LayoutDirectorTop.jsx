@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Cookie from "universal-cookie";
 import LayoutDirectorTopSideBar from "./LayoutDirectorTopSideBar";
 import LayoutDirectorTopCardArea from "./LayoutDirectorTopCardArea";
+import Layout from "../../components/layoutParts/Layout"
 
 //演出家トップページにコンテンツ
 export default function LayoutDirectorTop() {
@@ -172,7 +173,7 @@ export default function LayoutDirectorTop() {
   ];
 
   return (
-    <>
+    <Layout title="top">
       <div className="flex mt-3 w-full">
         <LayoutDirectorTopSideBar areaApi={area} action={getProfile2} />
         <LayoutDirectorTopCardArea
@@ -180,6 +181,6 @@ export default function LayoutDirectorTop() {
           path="/director/profile"
         />
       </div>
-    </>
+    </Layout>
   );
 }

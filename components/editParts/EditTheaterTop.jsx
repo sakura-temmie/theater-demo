@@ -5,7 +5,6 @@ import EditHeading from "./EditHeading";
 const ProfileTheaterTop = ({ title, capacity, station, cost, address, schedule }) => {
   return (
     <>
-      <div style={{ width: "960px" }}>
         <div className="flex space-x-4 justify-center">
           <div className="w-1/2 h-52">
             <EditHeading title={title} />
@@ -19,7 +18,6 @@ const ProfileTheaterTop = ({ title, capacity, station, cost, address, schedule }
           <EditDetail text={address} />
           <EditDetail text={schedule} />
         </div>
-      </div>
     </>
   );
 };
