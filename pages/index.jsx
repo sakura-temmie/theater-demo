@@ -1,4 +1,4 @@
-import LayoutNotLogin from "../components/layoutParts/Layout";
+import LayoutNotLogin from "../components/layoutParts/LayoutNotLogin";
 import Link from "next/link"
 
 export default function Home() {
