@@ -13,7 +13,7 @@ export default function chat() {
   const [reciverID, setReciverID] = useState("")
   const [senderName , setSenderName] = useState("")
   const [chatData, setChatData] = useState([])
-  const [newMessage, setNewMessage] = useState({})
+  const [newMessage, setNewMessage] = useState([])
 
   //初回ロード時に起動
   useEffect(() => {
@@ -26,10 +26,9 @@ export default function chat() {
     getChatData()
   },[reciverID])
 
-
   useEffect(() => {
     const data = chatData
-    data.unshift(newMessage)
+    data.push(newMessage)
     setChatData(data)
   }, [newMessage])
 
@@ -112,7 +111,7 @@ export default function chat() {
             return res.json()
           }
       }).then(data => {
-        setChatData(data.data.filter(data => data.body !== ""))
+        setChatData(data.data.reverse().filter(data => data.body !== ""))
         setSenderName(chatUser.filter(user => user.id == reciverID)[0].name)
       })
     } catch (err) {
