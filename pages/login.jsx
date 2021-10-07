@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 // import Cookie from "universal-cookie";
-import Layout from "../components/layoutParts/Layout";
+import Layout from "../components/layoutParts/LayoutNotLogin";
 import Logo from "../public/icon.png";
 import Image from "next/image";
 import Link from "next/link";

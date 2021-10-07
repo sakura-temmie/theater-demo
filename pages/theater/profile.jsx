@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layoutParts/Layout";
 import ProfileTheaterTop from "../../components/profileParts/ProfileTheaterTop";
 import ProfileTheaterDetail from "../../components/profileParts/ProfileTheaterDetail";
+import noImage from "../../public/imgPlaceholder.png";
 
 // post：getStaticPropsから取得したデータ
 export default function Test({ post }) {
@@ -18,7 +19,7 @@ export default function Test({ post }) {
     }
   }, []);
 
-  const getTheaterData = async ( userId ) => {
+  const getTheaterData = async (userId) => {
     const accessToken = await localStorage.getItem("access_token");
     try {
       await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}theaters/${userId}`, {
@@ -55,6 +56,9 @@ export default function Test({ post }) {
     schedule: `${theaterDetail.free_schedule}`,
     detail: `${theaterDetail.information}`,
   };
+  const imgPath = "https://theater-check.s3.ap-northeast-1.amazonaws.com/";
+  const truePath = imgPath + theater.photo;
+  const image = theater.main_photo == null ? noImage : truePath;
   return (
     <>
       <Layout title={"劇場詳細"}>
@@ -66,6 +70,7 @@ export default function Test({ post }) {
             cost={theater.cost}
             address={theater.address}
             schedule={theater.schedule}
+            img={image}
           />
           <ProfileTheaterDetail detail={theater.detail} />
         </div>
