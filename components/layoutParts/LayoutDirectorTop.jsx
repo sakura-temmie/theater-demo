@@ -52,12 +52,6 @@ export default function LayoutDirectorTop() {
     areaNum,
     date
   ) => {
-    console.log(minMoney);
-    console.log(maxMoney);
-    console.log(minCapacity);
-    console.log(maxCapacity);
-    console.log(areaNum);
-    console.log(date);
     const freeSchedule = String(date);
     const area = String(areaNum);
     const lowerLimitPrice = String(minMoney);
@@ -95,8 +89,6 @@ export default function LayoutDirectorTop() {
           }
         })
         .then((data) => {
-          console.log("-----------");
-          console.log(data);
           setProfileData(data.data);
         });
     } catch (err) {

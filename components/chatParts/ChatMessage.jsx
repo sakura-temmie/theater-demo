@@ -1,6 +1,6 @@
 const ChatMessage = ({ time,message }) => {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full mb-1">
       <div className="w-2/5 p-2 bg-gray-300 rounded-lg">
         {  message  }
       </div>
