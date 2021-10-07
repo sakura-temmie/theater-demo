@@ -2,28 +2,36 @@ import Layout from "../../components/layoutParts/Layout";
 import ProfileTopParts from "../../components/profileParts/ProfileTopParts";
 import ProfileMiddleParts from "../../components/profileParts/ProfileMiddleParts";
 import ProfileResultsArea from "../../components/profileParts/ProfileResultsArea";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import ProfileButton from "../../components/profileParts/ProfileButton";
 import noImage from "../../public/imgPlaceholder.png";
 
-const Profile = () => {
+const MyProfile = () => {
   const [directorData, setDirectorData] = useState([]);
   const [directorDetail, setDirectorDetail] = useState([]);
   const [directorPerformance, setDirectorPerformance] = useState([]);
 
-  const router = useRouter();
-  const pId = router.query.id;
+  // const router = useRouter();
+  //   const passUserId = () => {
+  //     router.push({
+  //       pathname: "director/profile",
+  //       query: { id: setDirectorData.id },
+  //     });
+  //   };
+  // const router = useRouter();
+  // const pId = router.query.id;
   // //初回のみ実行
   useEffect(() => {
     if (typeof window !== "undefined") {
-      getDirectorData(pId);
+      getDirectorData();
     }
-  }, [pId]);
+  }, []);
 
-  const getDirectorData = async (userId) => {
+  const getDirectorData = async () => {
     const accessToken = await localStorage.getItem("access_token");
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}directors/${userId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}me/director`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -39,8 +47,7 @@ const Profile = () => {
           }
         })
         .then((data) => {
-          localStorage.setItem("d_data", JSON.stringify(data.data));
-          localStorage.setItem("d_data_p", JSON.stringify(data.data.main_photo));
+          localStorage.setItem("my_data", JSON.stringify(data.data));
           setDirectorData(data.data);
           setDirectorDetail(data.data.director);
           setDirectorPerformance(data.data.performances);
@@ -59,18 +66,18 @@ const Profile = () => {
     schedule: `${directorDetail.free_schedule}`,
   };
 
-  const results = {
-    title: `${directorPerformance.name}`,
-  };
+  // const results = {
+  //   title: `${directorPerformance.name}`,
+  // };
 
   const imgPath = "https://theater-check.s3.ap-northeast-1.amazonaws.com/";
   const truePath = imgPath + director.photo;
   const image = directorData.main_photo == null ? noImage : truePath;
 
-
   return (
     <Layout title={"演出家詳細"}>
       <div style={{ width: "960px" }}>
+        <ProfileButton path="/director/profile_edit" title="編集する" />
         <ProfileTopParts
           name={director.name}
           profile={director.profile}
@@ -78,11 +85,16 @@ const Profile = () => {
           schedule={director.schedule}
           img={image}
         />
-        <ProfileMiddleParts />
+        <div className="flex justify-between px-3">
+          <div className="flex w-1/2 justify-end">
+            <ProfileMiddleParts />
+          </div>
+          <ProfileButton path="/director/action_edit" title={"追加する"} />
+        </div>
         <ProfileResultsArea resultApi={directorPerformance} />
       </div>
     </Layout>
   );
 };
 
-export default Profile;
+export default MyProfile;

@@ -3,13 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import banner from "../../public/icon.png";
 import LayoutButton from "./LayoutButton";
-import Cookie from "universal-cookie";
 import { useRouter } from "next/router";
 
-const cookie = new Cookie();
-//childrenはインポート先でラップしてる全てのコンテンツが入ってくる
-//titleはLayoutが呼び出された時にページから特定のタイトルを受け取る
-export default function Layout({ children, title }) {
+export default function LayoutTheater({ children, title }) {
   const router = useRouter();
   const logout = () => {
     localStorage.removeItem("access_token");
@@ -30,9 +26,9 @@ export default function Layout({ children, title }) {
               <p className="text-2xl cursor-pointer pl-2">Spot Light</p>
             </Link>
             <div className="ml-auto flex ">
-              <LayoutButton path="/top" title="劇場を探す" />
+              <LayoutButton path="/top" title="演出家を探す" />
               <LayoutButton path="/chat" title="メッセージ" />
-              <LayoutButton path="/director/myProfile" title="プロフィール" />
+              <LayoutButton path="/theater/myProfile" title="プロフィール" />
               <p
                 onClick={logout}
                 className="h-24 text-gray-400 bg-yellow-50 hover:bg-yellow-100 p-10 cursor-pointer"

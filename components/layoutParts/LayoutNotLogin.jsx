@@ -23,9 +23,9 @@ export default function Layout({ children, title }) {
               <p className="text-2xl cursor-pointer pl-2">Spot Light</p>
             </Link>
             <div className="ml-auto flex ">
-              <LayoutButton path="/top" title="演出家を探す" />
-              <LayoutButton path="/chat" title="メッセージ" />
-              <LayoutButton path="/director/profile" title="プロフィール" />
+              {/* <LayoutButton path="/top" title="演出家を探す" /> */}
+              {/* <LayoutButton path="/chat" title="メッセージ" /> */}
+              {/* <LayoutButton path="/director/profile" title="プロフィール" /> */}
             </div>
           </div>
         </nav>

@@ -1,4 +1,4 @@
-import LayoutNotLogin from "../components/layoutParts/Layout";
+import LayoutNotLogin from "../components/layoutParts/LayoutNotLogin";
 import Link from "next/link"
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
           type="submit"
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
           >
-          ログイン
+          ログイン！
         </button>
           </Link>
         <Link href="/register/theater" passHref>
