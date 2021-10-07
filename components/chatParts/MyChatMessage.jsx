@@ -1,6 +1,6 @@
 const MyChatMessage = ({ time,message }) => {
   return (
-    <div className="w-full flex justify-end">
+    <div className="w-full flex justify-end mb-1">
       <p className="mr-2 mt-auto mb-0">
         {time}
       </p>

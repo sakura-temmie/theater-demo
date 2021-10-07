@@ -69,8 +69,6 @@ export default function LayoutTheaterTop() {
           }
         })
         .then((data) => {
-          console.log("-----------");
-          console.log(data);
           localStorage.setItem("test", JSON.stringify(data));
           setProfileData(data.data);
         });

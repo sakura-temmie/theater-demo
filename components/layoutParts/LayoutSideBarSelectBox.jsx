@@ -26,7 +26,7 @@ export default function LayoutSideBarSelectBox({
   } else {
     select =
       <select className="w-full border border-blue-400" name={name}  onChange={e => action(e.target.value)}>
-        {optionData.map((data,index) => <option key={index + 1} value={index === 0 ? "" : index + 1}> {data} </option>)}
+        {optionData.map((data,index) => <option key={index} value={index === 0 ? "" : index}> {data} </option>)}
       </select>
   }
   return (

@@ -1,13 +1,17 @@
 import ChatSideBarCard from "./ChatSideBarCard";
 
-const ChatSideBar = ({ }) => {
+const ChatSideBar = ({ users, action }) => {
+  const imgPath = "https://theater-check.s3.ap-northeast-1.amazonaws.com/"
   return (
     <div className="w-full">
-      {
+      {users.map(user => (
         <ChatSideBarCard
-          imageIconPath="https://img.stardust.co.jp/upload/talent/photo/1/182.H.jpg"
-          name="山田孝之"
+          key={user.id}
+          action= {() => action(user.id)}
+          imageIconPath={imgPath + user.main_photo}
+          name = { user.name }
         />
+       ))
       }
     </div >
   )
