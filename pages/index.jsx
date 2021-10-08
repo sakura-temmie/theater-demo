@@ -1,7 +1,7 @@
 import LayoutNotLogin from "../components/layoutParts/LayoutNotLogin";
 import Link from "next/link"
 
-export default function Home() {
+export default function Index() {
   return (
     <LayoutNotLogin title="Spotlight">
       <div className="w-64">
