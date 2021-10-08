@@ -39,8 +39,6 @@ const Profile = () => {
           }
         })
         .then((data) => {
-          localStorage.setItem("d_data", JSON.stringify(data.data));
-          localStorage.setItem("d_data_p", JSON.stringify(data.data.main_photo));
           setDirectorData(data.data);
           setDirectorDetail(data.data.director);
           setDirectorPerformance(data.data.performances);

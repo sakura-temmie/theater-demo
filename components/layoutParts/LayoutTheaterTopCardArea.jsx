@@ -11,7 +11,7 @@ export default function LayoutTheaterCardArea({ directorApi, path }) {
             imgUrl      = { imgPath + api.main_photo }
             name        = { api.name }
             totalNumberPerformances = { api.performances_count }
-            currentPerformance      = {api.performances[api.performances.length - 1]?.name}
+            currentPerformance      = {api.performances[0]?.name}
             path        = {path}
           />
         </div>

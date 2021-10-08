@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Cookie from "universal-cookie";
 import LayoutTheaterTopSideBar from "./LayoutTheaterTopSideBar";
 import LayoutTheaterTopCardArea from "./LayoutTheaterTopCardArea";
+import LayoutTheater from "../../components/layoutParts/LayoutTheater";
 
 //演出家トップページにコンテンツ
 export default function LayoutTheaterTop() {
@@ -69,8 +69,6 @@ export default function LayoutTheaterTop() {
           }
         })
         .then((data) => {
-          console.log("-----------");
-          console.log(data);
           localStorage.setItem("test", JSON.stringify(data));
           setProfileData(data.data);
         });
@@ -81,7 +79,7 @@ export default function LayoutTheaterTop() {
   };
 
   return (
-    <>
+    <LayoutTheater title="Top">
       <div className="flex mt-3 w-full">
         <LayoutTheaterTopSideBar action={getProfile2} />
         <LayoutTheaterTopCardArea
@@ -89,6 +87,6 @@ export default function LayoutTheaterTop() {
           // path="/theater/profile"
         />
       </div>
-    </>
+    </LayoutTheater>
   );
 }

@@ -126,9 +126,9 @@ const Profile_edit = () => {
             return res.json();
           }
         })
-        .then((data) => {
-          localStorage.setItem("テスト01", JSON.stringify(data));
-        });
+        // .then((data) => {
+        //   localStorage.setItem("テスト01", JSON.stringify(data));
+        // });
       // router.push("/top");
     } catch (err) {
       alert(err);

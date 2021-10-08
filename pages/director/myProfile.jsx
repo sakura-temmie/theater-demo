@@ -47,7 +47,7 @@ const MyProfile = () => {
           }
         })
         .then((data) => {
-          localStorage.setItem("my_data", JSON.stringify(data.data));
+          // localStorage.setItem("my_data", JSON.stringify(data.data));
           setDirectorData(data.data);
           setDirectorDetail(data.data.director);
           setDirectorPerformance(data.data.performances);

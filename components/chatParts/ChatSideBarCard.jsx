@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const ChatSideBarCard = ({ name, imageIconPath }) => {
+const ChatSideBarCard = ({ name, imageIconPath, action }) => {
   return (
-    <div className="w-full h-20 border border-gray-200 hover:border-blue-400 flex">
+    <div className="w-full h-20 border border-gray-200 hover:border-blue-400 flex" onClick={action}>
       <div className="pl-2 py-2 w-1/4">
         <Image
           className="rounded-full object-fill"

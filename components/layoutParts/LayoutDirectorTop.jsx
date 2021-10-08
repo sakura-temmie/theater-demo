@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Cookie from "universal-cookie";
 import LayoutDirectorTopSideBar from "./LayoutDirectorTopSideBar";
 import LayoutDirectorTopCardArea from "./LayoutDirectorTopCardArea";
+import Layout from "../../components/layoutParts/Layout"
 
 //演出家トップページにコンテンツ
 export default function LayoutDirectorTop() {
@@ -51,12 +52,6 @@ export default function LayoutDirectorTop() {
     areaNum,
     date
   ) => {
-    console.log(minMoney);
-    console.log(maxMoney);
-    console.log(minCapacity);
-    console.log(maxCapacity);
-    console.log(areaNum);
-    console.log(date);
     const freeSchedule = String(date);
     const area = String(areaNum);
     const lowerLimitPrice = String(minMoney);
@@ -94,8 +89,6 @@ export default function LayoutDirectorTop() {
           }
         })
         .then((data) => {
-          console.log("-----------");
-          console.log(data);
           setProfileData(data.data);
         });
     } catch (err) {
@@ -172,7 +165,7 @@ export default function LayoutDirectorTop() {
   ];
 
   return (
-    <>
+    <Layout title="top">
       <div className="flex mt-3 w-full">
         <LayoutDirectorTopSideBar areaApi={area} action={getProfile2} />
         <LayoutDirectorTopCardArea
@@ -180,6 +173,6 @@ export default function LayoutDirectorTop() {
           path="/director/profile"
         />
       </div>
-    </>
+    </Layout>
   );
 }

@@ -4,6 +4,8 @@ import LayoutDirectorTop from "../components/layoutParts/LayoutDirectorTop";
 import LayoutTheaterTop from "../components/layoutParts/LayoutTheaterTop";
 import Cookie from "universal-cookie";
 import Link from "next/link";
+import LayoutTheater from "../components/layoutParts/LayoutTheater";
+
 
 export default function Home() {
   //state
@@ -42,7 +44,6 @@ export default function Home() {
           }
         })
         .then((data) => {
-          localStorage.setItem("test", JSON.stringify(data));
           setPage(showPage(data.user.role));
         });
     } catch (err) {
@@ -53,10 +54,10 @@ export default function Home() {
 
   return (
     <>
-      <Layout title="Top">
+      {/* <Layout title="Top"> */}
         {/* ページをを実装する */}
         {page}
-      </Layout>
+      {/* </Layout> */}
     </>
   );
 }
