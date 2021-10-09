@@ -34,17 +34,17 @@ const Profile_edit = () => {
 
   const handleImage = (e) => {
     const photo = e.target.files[0];
-    localStorage.setItem("photo", e.target.files[0]);
+    console.log(e.target.files[0]);
     setPhoto(photo);
   };
 
   // console.log(photo);
 
   // const handleChangeFile = (e) => {
-    //   setPhoto(() => {
-      //     return file ? file : null;
-      //   });
-      // };
+  //   setPhoto(() => {
+  //     return file ? file : null;
+  //   });
+  // };
   //     const handleChangeFile = (e) => {
   //   localStorage.setItem("photo", e.target.files[0]);
   //   setPhoto(e.target.files[0]);
@@ -110,13 +110,44 @@ const Profile_edit = () => {
           name: name,
           about_me: aboutMe,
           desired_price: desiredPrice,
-          photo: photo,
+          // photo: photo,
           free_schedule: freeSchedule,
         }),
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           // "Content-Type": "application/octet-stream",
+        },
+      }).then((res) => {
+        if (res.status === 400) {
+          throw "認証が失敗しました";
+        } else if (res.ok) {
+          return res.json();
+        }
+      });
+      // .then((data) => {
+      //   localStorage.setItem("テスト01", JSON.stringify(data));
+      // });
+      // router.push("/top");
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const updatePhoto = async (e) => {
+    e.preventDefault();
+    try {
+      const accessToken = await localStorage.getItem("access_token");
+      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}me/director`, {
+        method: "POST",
+        // body: JSON.stringify({
+        body: {
+          token: accessToken,
+          photo: photo,
+        },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
         },
       })
         .then((res) => {
@@ -126,9 +157,9 @@ const Profile_edit = () => {
             return res.json();
           }
         })
-        // .then((data) => {
-        //   localStorage.setItem("テスト01", JSON.stringify(data));
-        // });
+        .then((data) => {
+          console.log(JSON.stringify(data));
+        });
       // router.push("/top");
     } catch (err) {
       alert(err);
@@ -176,7 +207,8 @@ const Profile_edit = () => {
             <div className="w-1/2 relative">
               <Image
                 className="object-contain h-48 w-full"
-                width={600} height={400}
+                width={600}
+                height={400}
                 src={image}
                 alt="main Image"
               />
@@ -244,6 +276,14 @@ const Profile_edit = () => {
           castModalTitle={"出演キャスト"}
           castModalText={cast.cast}
         />*/}
+        </form>
+        <form onSubmit={updatePhoto}>
+          <button
+            type="submit"
+            className="group relative flex justify-center py-2 px-8 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 m-auto mt-6"
+          >
+            画像を更新する
+          </button>
         </form>
       </div>
     </Layout>
