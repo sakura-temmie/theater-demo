@@ -3,12 +3,14 @@ import EditButton from "../../components/editParts/EditButton";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import noImage from "../../public/imgPlaceholder.png";
+import { useRouter } from "next/router";
 // import { render } from "@headlessui/react/dist/utils/render";
 import img from "../../public/banner.jpg";
 
 const Profile_edit = () => {
   const [directorData, setDirectorData] = useState([]);
   const [directorDetail, setDirectorDetail] = useState([]);
+  const router = useRouter();
 
   const director = {
     name: `${directorData.name}`,
@@ -23,45 +25,12 @@ const Profile_edit = () => {
   const [desiredPrice, setDesiredPrice] = useState("");
   const [photo, setPhoto] = useState(null);
   const [freeSchedule, setFreeSchedule] = useState("");
-
   const inputRef = useRef(null);
-  // const nameRef = useRef(null);
 
   const fileUpload = () => {
     console.log(inputRef.current);
     inputRef.current.click();
   };
-
-  const handleImage = (e) => {
-    const photo = e.target.files[0];
-    console.log(e.target.files[0]);
-    setPhoto(photo);
-  };
-
-  // console.log(photo);
-
-  // const handleChangeFile = (e) => {
-  //   setPhoto(() => {
-  //     return file ? file : null;
-  //   });
-  // };
-  //     const handleChangeFile = (e) => {
-  //   localStorage.setItem("photo", e.target.files[0]);
-  //   setPhoto(e.target.files[0]);
-  // };
-
-  // const handleChange = (e) => {
-  //   setFile(e.target.files[0]);
-  //   if (e.target.files && e.target.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.onload = function (e) {
-  //       document
-  //         .getElementById("thumbnail")
-  //         .setAttribute("src", e.target.result);
-  //     };
-  //     reader.readAsDataURL(e.target.files[0]);
-  //   }
-  // };
 
   const getDirectorData = async () => {
     const accessToken = await localStorage.getItem("access_token");
@@ -97,7 +66,6 @@ const Profile_edit = () => {
       getDirectorData();
     }
   }, []);
-  // getDirectorData();
 
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -116,7 +84,6 @@ const Profile_edit = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          // "Content-Type": "application/octet-stream",
         },
       }).then((res) => {
         if (res.status === 400) {
@@ -125,45 +92,36 @@ const Profile_edit = () => {
           return res.json();
         }
       });
-      // .then((data) => {
-      //   localStorage.setItem("テスト01", JSON.stringify(data));
-      // });
-      // router.push("/top");
     } catch (err) {
       alert(err);
     }
   };
 
+  const handleImage = (e) => {
+    const accessToken = localStorage.getItem("access_token");
+    const formData = new FormData();
+    formData.append("photo", e.target.files[0]);
+    formData.append("token", accessToken);
+    setPhoto(formData);
+  };
+
   const updatePhoto = async (e) => {
     e.preventDefault();
-    try {
-      const accessToken = await localStorage.getItem("access_token");
-      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}me/director`, {
-        method: "POST",
-        // body: JSON.stringify({
-        body: {
-          token: accessToken,
-          photo: photo,
-        },
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
-        },
+    const param = {
+      method: "POST",
+      body: photo,
+    };
+    fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}me/director/photo`, param)
+      .then((res) => {
+        if (res.status === 400) {
+          throw "認証が失敗しました";
+        } else if (res.ok) {
+          return res.json();
+        }
       })
-        .then((res) => {
-          if (res.status === 400) {
-            throw "認証が失敗しました";
-          } else if (res.ok) {
-            return res.json();
-          }
-        })
-        .then((data) => {
-          console.log(JSON.stringify(data));
-        });
-      // router.push("/top");
-    } catch (err) {
-      alert(err);
-    }
+      .then((data) => {
+        router.push("/director/myProfile");
+      });
   };
 
   const imgPath = "https://theater-check.s3.ap-northeast-1.amazonaws.com/";

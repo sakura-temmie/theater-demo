@@ -127,15 +127,14 @@ const Edit = () => {
     };
     fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}me/theater/photo`, param)
       .then((res) => {
-        return res.json();
+        if (res.status === 400) {
+          throw "認証が失敗しました";
+        } else if (res.ok) {
+          return res.json();
+        }
       })
-      .then((json) => {
-        // 通信が成功した際の処理
-        console.log("good");
-      })
-      .catch((error) => {
-        // エラー処理
-        console.log("bad");
+      .then((data) => {
+        console.log(JSON.stringify(data));
       });
     // const accessToken = await localStorage.getItem("access_token");
     // const options = {
