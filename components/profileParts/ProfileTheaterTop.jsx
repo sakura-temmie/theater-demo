@@ -20,9 +20,13 @@ const ProfileTheatreTop = ({
             <p className="ml-10 text-gray-400">theater</p>
             <p className="text-4xl ml-10 mb-10 mt-3">{title}</p>
           </div>
-          <div className="">
-            {/* <ProfileButton title={"編集する"} path={"theater/edit"} /> */}
+
+          {/* こちらのボタンをご利用ください */}
+          <div>
+            <ProfileButton title={"個別相談する"} path={"/chat"} />
           </div>
+          {/* ーーーーーーーーー */}
+
         </div>
         <div className="flex items-center justify-between">
           <ProfileImage imgUrl={img} />
