@@ -21,6 +21,7 @@ const MyProfile = () => {
   //   };
   // const router = useRouter();
   // const pId = router.query.id;
+  
   // //初回のみ実行
   useEffect(() => {
     if (typeof window !== "undefined") {

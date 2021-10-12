@@ -12,6 +12,7 @@ export default function Test({ post }) {
 
   const router = useRouter();
   const pId = router.query.id;
+
   //初回のみ実行
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -61,6 +62,45 @@ export default function Test({ post }) {
   const imgPath = "https://theater-check.s3.ap-northeast-1.amazonaws.com/";
   const truePath = imgPath + theater.photo;
   const image = theaterData.main_photo == null ? noImage : truePath;
+
+
+  //チャットデータの送信処理を行う
+   const selectChatUser = async (userId) => {
+     const accessToken = await localStorage.getItem("access_token")
+
+    //クッキーの取得
+    // const accessToken = await new Cookie().get("access_token");
+    // await setAccessToken(new Cookie().get("access_token"))
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}messages/open`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          token: accessToken,
+          receiver: userId,
+        })
+      })
+        .then((res) => {
+          if (res.status === 400) {
+            throw "authentication failed";
+          } else if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (err) {
+      alert(err);
+      return;
+    }
+  };
+
+
+
   return (
     <>
       <Layout title={"劇場詳細"}>
@@ -73,6 +113,7 @@ export default function Test({ post }) {
             address={theater.address}
             schedule={theater.schedule}
             img={image}
+            action={ selectChatUser(pId) }
           />
           <ProfileTheaterDetail detail={theater.detail} />
         </div>

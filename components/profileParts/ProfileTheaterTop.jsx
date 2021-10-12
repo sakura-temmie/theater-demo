@@ -11,7 +11,9 @@ const ProfileTheatreTop = ({
   address,
   schedule,
   img,
+  action
 }) => {
+
   return (
     <>
       <div style={{ width: "960px" }}>
@@ -23,7 +25,7 @@ const ProfileTheatreTop = ({
 
           {/* こちらのボタンをご利用ください */}
           <div>
-            <ProfileButton title={"個別相談する"} path={"/chat"} />
+            <ProfileButton title={"個別相談する"} path={"/chat"} action={ action }/>
           </div>
           {/* ーーーーーーーーー */}
 

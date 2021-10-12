@@ -3,7 +3,7 @@ import ProfileText from "./ProfileText";
 // import ProfileDetail from "./ProfileDetail";
 import ProfileSentence from "./ProfileSentence";
 
-const ProfileTopParts = ({ name, profile, img, cost, schedule }) => {
+const ProfileTopParts = ({ name, profile, img, cost, schedule, action }) => {
   return (
     <>
       <div className="flex flex-col space-x-4 justify-center">
