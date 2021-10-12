@@ -65,9 +65,9 @@ const Profile = () => {
   const truePath = imgPath + director.photo;
   const image = directorData.main_photo == null ? noImage : truePath;
 
-   //チャットデータの送信処理を行う
-   const selectChatUser = async (userId) => {
-     const accessToken = await localStorage.getItem("access_token")
+  //チャットデータの送信処理を行う
+  const selectChatUser = async (userId) => {
+    const accessToken = await localStorage.getItem("access_token");
 
     //クッキーの取得
     // const accessToken = await new Cookie().get("access_token");
@@ -77,12 +77,12 @@ const Profile = () => {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           token: accessToken,
           receiver: userId,
-        })
+        }),
       })
         .then((res) => {
           if (res.status === 400) {
@@ -99,7 +99,6 @@ const Profile = () => {
       return;
     }
   };
-
 
   return (
     <Layout title={"演出家詳細"}>
